@@ -185,7 +185,7 @@ public class calculator {
         });
 
         JButton mult = new JButton("*");
-        mult.setBounds(230, 260,50, 50 );
+        mult.setBounds(230, 200,50, 50 );
         mult.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               
@@ -229,6 +229,7 @@ public class calculator {
         frame1.add(dot);
         frame1.add(add);
         frame1.add(sub);
+        frame1.add(mult);
 
 
         frame1.add(img1);
