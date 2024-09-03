@@ -67,7 +67,11 @@ public class calculator {
         clr.setFocusPainted(false);
         clr.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               tf1.setText(tf1.getText() + "00");
+               
+                String currentText = tf1.getText();
+
+                currentText = currentText.substring(0, currentText.length() - 1);
+                tf1.setText(currentText);
             }
         });
 
