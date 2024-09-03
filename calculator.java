@@ -13,6 +13,10 @@ public class calculator {
     static double var2 = 0;
     static String operation = "";
     static boolean firstNumberEntered = false;
+    static double vara = 0;
+    static double varb = 0;
+    static double varc = 0;
+    static double vard = 0;
     
     static double addition = 0;
     static double subtraction = 0;
@@ -21,6 +25,7 @@ public class calculator {
 
         Font helvfont = new Font("Helvetica", Font.PLAIN,20);
         Font helvbut = new Font("Helvetica", Font.PLAIN, 15);
+        Font helv = new Font("Helvetica", Font.PLAIN, 15);
 
         JFrame frame1 = new JFrame("Calculator");
         frame1.setLayout(new BorderLayout());
@@ -38,6 +43,11 @@ public class calculator {
         wel.setBounds(45,25, 400, 30);
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
+
+        JLabel vars = new JLabel("A=0, B=0, C=0, D=0");
+        vars.setBounds(45,75, 400, 30);
+        vars.setFont(helv);
+        vars.setForeground(Color.WHITE);
 
         JTextField tf1 = new JTextField();
         tf1.setBounds(45,100, 400, 50);
@@ -244,6 +254,74 @@ public class calculator {
         dot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                tf1.setText(tf1.getText() + ".");
+            }
+        });
+
+        JButton Abut = new JButton("A");
+        Abut.setBounds(50, 500,50, 50 );
+        Abut.setBackground(new Color(84,84,84,255));
+        Abut.setFont(helvbut);
+        Abut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        Abut.setForeground(Color.WHITE);
+        Abut.setFocusPainted(false);
+        Abut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                vara = Double.parseDouble(tf1.getText());
+
+                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                tf1.setText("");
+            }
+        });
+
+        JButton Bbut = new JButton("B");
+        Bbut.setBounds(110, 500,50, 50 );
+        Bbut.setBackground(new Color(84,84,84,255));
+        Bbut.setFont(helvbut);
+        Bbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        Bbut.setForeground(Color.WHITE);
+        Bbut.setFocusPainted(false);
+        Bbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                varb = Double.parseDouble(tf1.getText());
+        
+                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                tf1.setText("");
+            }
+        });
+
+        JButton Cbut = new JButton("C");
+        Cbut.setBounds(170, 500,50, 50 );
+        Cbut.setBackground(new Color(84,84,84,255));
+        Cbut.setFont(helvbut);
+        Cbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        Cbut.setForeground(Color.WHITE);
+        Cbut.setFocusPainted(false);
+        Cbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+                varc = Double.parseDouble(tf1.getText());
+        
+                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                tf1.setText("");
+            }
+        });
+
+        JButton Dbut = new JButton("D");
+        Dbut.setBounds(230, 500,50, 50 );
+        Dbut.setBackground(new Color(84,84,84,255));
+        Dbut.setFont(helvbut);
+        Dbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        Dbut.setForeground(Color.WHITE);
+        Dbut.setFocusPainted(false);
+        Dbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                vard = Double.parseDouble(tf1.getText());
+        
+                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                tf1.setText("");
             }
         });
 
@@ -487,6 +565,11 @@ public class calculator {
         frame1.add(div);
         frame1.add(eq);
         frame1.add(pow);
+        frame1.add(vars);
+        frame1.add(Abut);
+        frame1.add(Bbut);
+        frame1.add(Cbut);
+        frame1.add(Dbut);
 
 
         frame1.add(img1);
