@@ -29,7 +29,7 @@ public class calculator {
         frame1.setVisible(true);
         frame1.setResizable(false);
 
-        ImageIcon bg = new ImageIcon("image1.png");
+        ImageIcon bg = new ImageIcon("image4.png");
 
         JLabel img1 = new JLabel(bg);
         img1.setBounds(0,0,480, 854);
@@ -371,6 +371,38 @@ public class calculator {
             }
         });
 
+        JButton pow = new JButton("X^y");
+        pow.setBounds(290, 200,50, 50 );
+        pow.setBackground(new Color(84,84,84,255));
+        pow.setFont(helvbut);
+        pow.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        pow.setForeground(Color.WHITE);
+        pow.setFocusPainted(false);
+        pow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+
+                try {
+                    if (!firstNumberEntered) {
+                        var1 = Double.parseDouble(tf1.getText());
+                        tf1.setText("");
+                        operation = "pow";
+                        firstNumberEntered = true;
+                    } else {
+                       
+                        double var2 = Double.parseDouble(tf1.getText());
+                        double resultpow =(Math.pow(var1,var2));
+                        
+                        tf1.setText(String.valueOf(resultpow));
+                        //tf1.setText("");
+                        firstNumberEntered = false;
+                    }
+                } catch (NumberFormatException ex) {
+                    tf1.setText("Invalid input");
+                }
+            }
+        });
+
+
         JButton eq = new JButton("=");
         eq.setBounds(230, 440,50, 50 );
         eq.setBackground(new Color(84,84,84,255));
@@ -409,6 +441,13 @@ public class calculator {
                                     return;
                                 }
                                 break;
+                            case "pow":
+                                var2 = Double.parseDouble(tf1.getText());
+                                result = (Math.pow(var1, var2));
+                                break;
+
+                                //divider
+                                
                                 default:
                                 tf1.setText("Syntax Error");
                                 return;
@@ -447,6 +486,7 @@ public class calculator {
         frame1.add(ac);
         frame1.add(div);
         frame1.add(eq);
+        frame1.add(pow);
 
 
         frame1.add(img1);
