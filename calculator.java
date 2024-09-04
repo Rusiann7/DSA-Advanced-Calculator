@@ -17,6 +17,10 @@ public class calculator {
     static double varb = 0;
     static double varc = 0;
     static double vard = 0;
+    static double varcel = 0;
+    static double varflr = 0;
+    static double varsqrt = 0;
+    static double varcbrt = 0;
     
     static double addition = 0;
     static double subtraction = 0;
@@ -325,6 +329,91 @@ public class calculator {
             }
         });
 
+        JButton neg = new JButton("-/+");
+        neg.setBounds(290, 260,50, 50 );
+        neg.setBackground(new Color(84,84,84,255));
+        neg.setFont(helvbut);
+        neg.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        neg.setForeground(Color.WHITE);
+        neg.setFocusPainted(false);
+        neg.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+               
+            }
+        });
+
+        JButton cel = new JButton("CEIL");
+        cel.setBounds(290, 320,50, 50 );
+        cel.setBackground(new Color(84,84,84,255));
+        cel.setFont(helvbut);
+        cel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        cel.setForeground(Color.WHITE);
+        cel.setFocusPainted(false);
+        cel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                varcel = Double.parseDouble(tf1.getText());
+
+                double varcel1 = Math.ceil(varcel);
+                tf1.setText(String.valueOf(varcel1));
+            }
+        });
+
+        JButton flr = new JButton("FLR");
+        flr.setBounds(290, 380,50, 50 );
+        flr.setBackground(new Color(84,84,84,255));
+        flr.setFont(helvbut);
+        flr.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        flr.setForeground(Color.WHITE);
+        flr.setFocusPainted(false);
+        flr.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                varflr = Double.parseDouble(tf1.getText());
+
+                double varflr1 = Math.floor(varcel);
+                tf1.setText(String.valueOf(varflr1));
+                
+            }
+        });
+
+        JButton sqrt = new JButton("√");
+        sqrt.setBounds(290, 440,50, 50 );
+        sqrt.setBackground(new Color(84,84,84,255));
+        sqrt.setFont(helvbut);
+        sqrt.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        sqrt.setForeground(Color.WHITE);
+        sqrt.setFocusPainted(false);
+        sqrt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                varsqrt = Double.parseDouble(tf1.getText());
+
+                double varsqrt1 = Math.sqrt(varsqrt);
+                tf1.setText(String.valueOf(varsqrt1));
+                
+            }
+        });
+
+        JButton cbrt = new JButton("∛");
+        cbrt.setBounds(290, 500,50, 50 );
+        cbrt.setBackground(new Color(84,84,84,255));
+        cbrt.setFont(helvbut);
+        cbrt.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        cbrt.setForeground(Color.WHITE);
+        cbrt.setFocusPainted(false);
+        cbrt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                varcbrt = Double.parseDouble(tf1.getText());
+
+                double varcbrt1 = Math.cbrt(varcbrt);
+                tf1.setText(String.valueOf(varcbrt1));
+                
+            }
+        });
+
         JButton sub = new JButton("-");
         sub.setBounds(230, 320,50, 50 );
         sub.setBackground(new Color(84,84,84,255));
@@ -570,7 +659,11 @@ public class calculator {
         frame1.add(Bbut);
         frame1.add(Cbut);
         frame1.add(Dbut);
-
+        frame1.add(neg);
+        frame1.add(flr);
+        frame1.add(cel);
+        frame1.add(sqrt);
+        frame1.add(cbrt);
 
         frame1.add(img1);
         
