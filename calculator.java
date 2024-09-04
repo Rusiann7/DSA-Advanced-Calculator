@@ -627,6 +627,8 @@ public class calculator {
             }
         });
 
+
+        //this is not working
         JButton poww = new JButton("X^y^z");
         poww.setBounds(350, 200,50, 50 );
         poww.setBackground(new Color(84,84,84,255));
