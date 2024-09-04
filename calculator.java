@@ -13,14 +13,18 @@ public class calculator {
     static double var2 = 0;
     static String operation = "";
     static boolean firstNumberEntered = false;
-    static double vara = 0;
-    static double varb = 0;
-    static double varc = 0;
-    static double vard = 0;
+    static long vara = 0;
+    static long varb = 0;
+    static long varc = 0;
+    static long vard = 0;
     static double varcel = 0;
     static double varflr = 0;
     static double varsqrt = 0;
     static double varcbrt = 0;
+    static double negvar = 0;
+    static double varlog = 0;
+    static double varlogb = 0;
+    static double varnaddab = 0;
     
     static double addition = 0;
     static double subtraction = 0;
@@ -271,7 +275,7 @@ public class calculator {
         Abut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                
-                vara = Double.parseDouble(tf1.getText());
+                vara = Long.parseLong(tf1.getText());
 
                 vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
                 tf1.setText("");
@@ -288,7 +292,7 @@ public class calculator {
         Bbut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                varb = Double.parseDouble(tf1.getText());
+                varb = Long.parseLong(tf1.getText());
         
                 vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
                 tf1.setText("");
@@ -305,7 +309,7 @@ public class calculator {
         Cbut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                varc = Double.parseDouble(tf1.getText());
+                varc = Long.parseLong(tf1.getText());
         
                 vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
                 tf1.setText("");
@@ -322,7 +326,7 @@ public class calculator {
         Dbut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               
-                vard = Double.parseDouble(tf1.getText());
+                vard = Long.parseLong(tf1.getText());
         
                 vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
                 tf1.setText("");
@@ -339,7 +343,11 @@ public class calculator {
         neg.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               
-               
+                negvar = Double.parseDouble(tf1.getText());
+                
+                double negvar1 = -negvar;
+                tf1.setText(String.valueOf(negvar1));
+
             }
         });
 
@@ -410,6 +418,56 @@ public class calculator {
 
                 double varcbrt1 = Math.cbrt(varcbrt);
                 tf1.setText(String.valueOf(varcbrt1));
+                
+            }
+        });
+
+        JButton log = new JButton("log");
+        log.setBounds(350, 260,50, 50 );
+        log.setBackground(new Color(84,84,84,255));
+        log.setFont(helvbut);
+        log.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        log.setForeground(Color.WHITE);
+        log.setFocusPainted(false);
+        log.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+
+                varlog = Double.parseDouble(tf1.getText());
+
+                double varlog1 = Math.log(varlog);
+                tf1.setText(String.valueOf(varlog1));
+
+            }
+        });
+
+        JButton log10 = new JButton("log10");
+        log10.setBounds(350, 380,50, 50 );
+        log10.setBackground(new Color(84,84,84,255));
+        log10.setFont(helvbut);
+        log10.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        log10.setForeground(Color.WHITE);
+        log10.setFocusPainted(false);
+        log10.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+
+                varlogb = Double.parseDouble(tf1.getText());
+
+                double varlogb1 = Math.log10(varlogb);
+                tf1.setText(String.valueOf(varlogb1));
+
+            }
+        });
+
+        JButton naddab = new JButton("A!+B!");
+        naddab.setBounds(350, 320,50, 50 );
+        naddab.setBackground(new Color(84,84,84,255));
+        naddab.setFont(helvbut);
+        naddab.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        naddab.setForeground(Color.WHITE);
+        naddab.setFocusPainted(false);
+        naddab.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
                 
             }
         });
@@ -569,6 +627,37 @@ public class calculator {
             }
         });
 
+        JButton poww = new JButton("X^y^z");
+        poww.setBounds(350, 200,50, 50 );
+        poww.setBackground(new Color(84,84,84,255));
+        poww.setFont(helvbut);
+        poww.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        poww.setForeground(Color.WHITE);
+        poww.setFocusPainted(false);
+        poww.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+
+                try {
+                    if (!firstNumberEntered) {
+                        var1 = Double.parseDouble(tf1.getText());
+                        tf1.setText("");
+                        operation = "pow";
+                        firstNumberEntered = true;
+                    } else {
+                       
+                        double var2 = Double.parseDouble(tf1.getText());
+                        double resultpow =(Math.pow(var1,var2));
+                        
+                        tf1.setText(String.valueOf(resultpow));
+                        //tf1.setText("");
+                        firstNumberEntered = false;
+                    }
+                } catch (NumberFormatException ex) {
+                    tf1.setText("Invalid input");
+                }
+            }
+        });
+
 
         JButton eq = new JButton("=");
         eq.setBounds(230, 440,50, 50 );
@@ -664,6 +753,10 @@ public class calculator {
         frame1.add(cel);
         frame1.add(sqrt);
         frame1.add(cbrt);
+        frame1.add(log);
+        frame1.add(log10);
+        frame1.add(naddab);
+        frame1.add(poww);
 
         frame1.add(img1);
         
