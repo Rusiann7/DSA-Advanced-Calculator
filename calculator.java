@@ -25,6 +25,8 @@ public class calculator {
     static double varlog = 0;
     static double varlogb = 0;
     static double varnaddab = 0;
+    static double varsumma = 0;
+    static double varprodd = 1;
     
     static double addition = 0;
     static double subtraction = 0;
@@ -73,6 +75,14 @@ public class calculator {
         ac.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                tf1.setText("");
+
+               vara = 0;
+               varb = 0;
+               varc = 0;
+               vard = 0;
+
+                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                tf1.setText("");
             }
         });
 
@@ -441,7 +451,7 @@ public class calculator {
         });
 
         JButton log10 = new JButton("log10");
-        log10.setBounds(350, 380,50, 50 );
+        log10.setBounds(350, 320,50, 50 );
         log10.setBackground(new Color(84,84,84,255));
         log10.setFont(helvbut);
         log10.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -459,7 +469,7 @@ public class calculator {
         });
 
         JButton naddab = new JButton("A!+B!");
-        naddab.setBounds(350, 320,50, 50 );
+        naddab.setBounds(350, 380,50, 50 );
         naddab.setBackground(new Color(84,84,84,255));
         naddab.setFont(helvbut);
         naddab.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -468,6 +478,42 @@ public class calculator {
         naddab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
+                
+            }
+        });
+
+        JButton summa = new JButton("∑ A/B");
+        summa.setBounds(350, 440,50, 50 );
+        summa.setBackground(new Color(84,84,84,255));
+        summa.setFont(helvbut);
+        summa.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        summa.setForeground(Color.WHITE);
+        summa.setFocusPainted(false);
+        summa.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                for (int i=1; i<=vara; i++){
+                    varsumma = varsumma + varb;
+                }
+                tf1.setText(String.valueOf(varsumma));
+                
+            }
+        });
+
+        JButton prodd = new JButton("Π A/B");
+        prodd.setBounds(350, 500,50, 50 );
+        prodd.setBackground(new Color(84,84,84,255));
+        prodd.setFont(helvbut);
+        prodd.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        prodd.setForeground(Color.WHITE);
+        prodd.setFocusPainted(false);
+        prodd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                for (long i = varb; i <= vara; i++){
+                    varprodd = varprodd * i;
+                }
+                tf1.setText(String.valueOf(varprodd));
                 
             }
         });
@@ -759,6 +805,8 @@ public class calculator {
         frame1.add(log10);
         frame1.add(naddab);
         frame1.add(poww);
+        frame1.add(summa);
+        frame1.add(prodd);
 
         frame1.add(img1);
         
