@@ -40,6 +40,7 @@ public class calculator {
         Font helvbut = new Font("Helvetica", Font.BOLD, 16);
         Font helv = new Font("Helvetica", Font.PLAIN, 13);
         Font helv14 = new Font("Helvetica", Font.BOLD, 15);
+        Font helv12 = new Font("Helvetica", Font.PLAIN, 12);
 
         JFrame frame1 = new JFrame("Calculator");
         frame1.setLayout(new BorderLayout());
@@ -58,9 +59,9 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
-        JLabel ver = new JLabel("V.1.11");
-        ver.setBounds(450, 824, 400, 20);
-        ver.setFont(helv);
+        JLabel ver = new JLabel("V.1.12");
+        ver.setBounds(160,35, 400, 20);
+        ver.setFont(helv12);
         ver.setForeground(Color.WHITE);
 
         JLabel vars = new JLabel("A=0, B=0, C=0, D=0");
