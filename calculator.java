@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class calculator {
 
@@ -27,6 +28,7 @@ public class calculator {
     static double varnaddab = 0;
     static double varsumma = 0;
     static double varprodd = 1;
+    //static String uptxtfl;
     
     static double addition = 0;
     static double subtraction = 0;
@@ -54,19 +56,32 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
+        JLabel ver = new JLabel("V.1.11");
+        ver.setBounds(450, 824, 400, 20);
+        ver.setFont(helv);
+        ver.setForeground(Color.WHITE);
+
         JLabel vars = new JLabel("A=0, B=0, C=0, D=0");
         vars.setBounds(45,75, 400, 30);
         vars.setFont(helv);
         vars.setForeground(Color.WHITE);
 
+        JTextField tf2 = new JTextField();
+        tf2.setBounds(45,100, 400, 50);
+        tf2.setBackground(new Color(52, 52, 52));
+        tf2.setFont(helvfont);
+        tf2.setForeground(Color.WHITE);
+        tf2.setBorder(new EmptyBorder(0, 0, 0, 0));
+
         JTextField tf1 = new JTextField();
-        tf1.setBounds(45,100, 400, 50);
+        tf1.setBounds(45,155, 400, 50);
         tf1.setBackground(new Color(52, 52, 52));
         tf1.setFont(helvfont);
         tf1.setForeground(Color.WHITE);
+        //tf2.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         JButton ac = new JButton("AC");
-        ac.setBounds(50, 200,50, 50 );
+        ac.setBounds(50, 215,50, 50 );
         ac.setBackground(new Color(84,84,84,255));
         ac.setFont(helvbut);
         ac.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -81,13 +96,14 @@ public class calculator {
                varc = 0;
                vard = 0;
 
-                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
+                tf2.setText("");
             }
         });
 
         JButton clr = new JButton("C");
-        clr.setBounds(110, 200,50, 50 );
+        clr.setBounds(110, 215,50, 50 );
         clr.setBackground(new Color(84,84,84,255));
         clr.setFont(helvbut);
         clr.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -104,7 +120,7 @@ public class calculator {
         });
 
         JButton per = new JButton("%");
-        per.setBounds(170, 200,50, 50 );
+        per.setBounds(170, 215,50, 50 );
         per.setBackground(new Color(84,84,84,255));
         per.setFont(helvbut);
         per.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -114,13 +130,48 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
                
                 double var1 = Double.parseDouble(tf1.getText());
+                String uptxtfl = tf1.getText() + "%";
+                tf2.setText(uptxtfl);
                 double result = var1 / 100;
                 tf1.setText(String.valueOf(result));
             }
         });
 
+        JButton div = new JButton("/");
+        div.setBounds(230, 215,50, 50 );
+        div.setBackground(new Color(84,84,84,255));
+        div.setFont(helvbut);
+        div.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        div.setForeground(Color.WHITE);
+        div.setFocusPainted(false);
+        div.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                try {
+                    if (!firstNumberEntered) {
+                        var1 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = tf1.getText() + "/";
+                        tf2.setText(uptxtfl);
+                        tf1.setText("");
+                        operation = "/";
+                        firstNumberEntered = true;
+                    } else {
+                       
+                        double var2 = Double.parseDouble(tf1.getText());
+                        double divition = var1 / var2;
+                        
+                        tf1.setText(String.valueOf(divition));
+                        //tf1.setText("");
+                        firstNumberEntered = false;
+                    }
+                } catch (NumberFormatException ex) {
+                    tf1.setText("Invalid input");
+                }
+            }
+        });
+
         JButton seven = new JButton("7");
-        seven.setBounds(50, 260,50, 50 );
+        seven.setBounds(50, 275,50, 50 );
         seven.setBackground(new Color(84,84,84,255));
         seven.setFont(helvbut);
         seven.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -133,7 +184,7 @@ public class calculator {
         });
 
         JButton eight = new JButton("8");
-        eight.setBounds(110, 260,50, 50 );
+        eight.setBounds(110, 275,50, 50 );
         eight.setBackground(new Color(84,84,84,255));
         eight.setFont(helvbut);
         eight.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -146,7 +197,7 @@ public class calculator {
         });
 
         JButton nine = new JButton("9");
-        nine.setBounds(170, 260,50, 50 );
+        nine.setBounds(170, 275,50, 50 );
         nine.setBackground(new Color(84,84,84,255));
         nine.setFont(helvbut);
         nine.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -159,7 +210,7 @@ public class calculator {
         });
 
         JButton four = new JButton("4");
-        four.setBounds(50, 320,50, 50 );
+        four.setBounds(50, 335,50, 50 );
         four.setBackground(new Color(84,84,84,255));
         four.setFont(helvbut);
         four.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -172,7 +223,7 @@ public class calculator {
         });
 
         JButton five = new JButton("5");
-        five.setBounds(110, 320,50, 50 );
+        five.setBounds(110, 335,50, 50 );
         five.setBackground(new Color(84,84,84,255));
         five.setFont(helvbut);
         five.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -185,7 +236,7 @@ public class calculator {
         });
 
         JButton six = new JButton("6");
-        six.setBounds(170, 320,50, 50 );
+        six.setBounds(170, 335,50, 50 );
         six.setBackground(new Color(84,84,84,255));
         six.setFont(helvbut);
         six.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -198,7 +249,7 @@ public class calculator {
         });
 
         JButton one = new JButton("1");
-        one.setBounds(50, 380,50, 50 );
+        one.setBounds(50, 395,50, 50 );
         one.setBackground(new Color(84,84,84,255));
         one.setFont(helvbut);
         one.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -211,7 +262,7 @@ public class calculator {
         });
 
         JButton two = new JButton("2");
-        two.setBounds(110, 380,50, 50 );
+        two.setBounds(110, 395,50, 50 );
         two.setBackground(new Color(84,84,84,255));
         two.setFont(helvbut);
         two.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -224,7 +275,7 @@ public class calculator {
         });
 
         JButton three = new JButton("3");
-        three.setBounds(170, 380,50, 50 );
+        three.setBounds(170, 395,50, 50 );
         three.setBackground(new Color(84,84,84,255));
         three.setFont(helvbut);
         three.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -237,7 +288,7 @@ public class calculator {
         });
 
         JButton zero = new JButton("0");
-        zero.setBounds(50, 440,50, 50 );
+        zero.setBounds(50, 455,50, 50 );
         zero.setBackground(new Color(84,84,84,255));
         zero.setFont(helvbut);
         zero.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -250,7 +301,7 @@ public class calculator {
         });
 
         JButton dzero = new JButton("00");
-        dzero.setBounds(110, 440,50, 50 );
+        dzero.setBounds(110, 455,50, 50 );
         dzero.setBackground(new Color(84,84,84,255));
         dzero.setFont(helvbut);
         dzero.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -263,7 +314,7 @@ public class calculator {
         });
 
         JButton dot = new JButton(".");
-        dot.setBounds(170, 440,50, 50 );
+        dot.setBounds(170, 455,50, 50 );
         dot.setBackground(new Color(84,84,84,255));
         dot.setFont(helvbut);
         dot.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -276,7 +327,7 @@ public class calculator {
         });
 
         JButton Abut = new JButton("A");
-        Abut.setBounds(50, 500,50, 50 );
+        Abut.setBounds(50, 515,50, 50 );
         Abut.setBackground(new Color(84,84,84,255));
         Abut.setFont(helvbut);
         Abut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -293,7 +344,7 @@ public class calculator {
         });
 
         JButton Bbut = new JButton("B");
-        Bbut.setBounds(110, 500,50, 50 );
+        Bbut.setBounds(110, 515,50, 50 );
         Bbut.setBackground(new Color(84,84,84,255));
         Bbut.setFont(helvbut);
         Bbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -310,7 +361,7 @@ public class calculator {
         });
 
         JButton Cbut = new JButton("C");
-        Cbut.setBounds(170, 500,50, 50 );
+        Cbut.setBounds(170, 515,50, 50 );
         Cbut.setBackground(new Color(84,84,84,255));
         Cbut.setFont(helvbut);
         Cbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -327,7 +378,7 @@ public class calculator {
         });
 
         JButton Dbut = new JButton("D");
-        Dbut.setBounds(230, 500,50, 50 );
+        Dbut.setBounds(230, 515,50, 50 );
         Dbut.setBackground(new Color(84,84,84,255));
         Dbut.setFont(helvbut);
         Dbut.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -344,7 +395,7 @@ public class calculator {
         });
 
         JButton neg = new JButton("-/+");
-        neg.setBounds(290, 260,50, 50 );
+        neg.setBounds(290, 275,50, 50 );
         neg.setBackground(new Color(84,84,84,255));
         neg.setFont(helvbut);
         neg.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -362,7 +413,7 @@ public class calculator {
         });
 
         JButton cel = new JButton("CEIL");
-        cel.setBounds(290, 320,50, 50 );
+        cel.setBounds(290, 335,50, 50 );
         cel.setBackground(new Color(84,84,84,255));
         cel.setFont(helvbut);
         cel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -372,6 +423,9 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
 
                 varcel = Double.parseDouble(tf1.getText());
+                String uptxtfl = tf1.getText() + " CEIL";
+                tf2.setText(uptxtfl);
+                
 
                 double varcel1 = Math.ceil(varcel);
                 tf1.setText(String.valueOf(varcel1));
@@ -379,7 +433,7 @@ public class calculator {
         });
 
         JButton flr = new JButton("FLR");
-        flr.setBounds(290, 380,50, 50 );
+        flr.setBounds(290, 395,50, 50 );
         flr.setBackground(new Color(84,84,84,255));
         flr.setFont(helvbut);
         flr.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -389,15 +443,17 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
               
                 varflr = Double.parseDouble(tf1.getText());
+                String uptxtfl = tf1.getText() + " FLR";
+                tf2.setText(uptxtfl);
 
-                double varflr1 = Math.floor(varcel);
+                double varflr1 = Math.floor(varflr);
                 tf1.setText(String.valueOf(varflr1));
                 
             }
         });
 
         JButton sqrt = new JButton("√");
-        sqrt.setBounds(290, 440,50, 50 );
+        sqrt.setBounds(290, 455,50, 50 );
         sqrt.setBackground(new Color(84,84,84,255));
         sqrt.setFont(helvbut);
         sqrt.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -407,6 +463,8 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
               
                 varsqrt = Double.parseDouble(tf1.getText());
+                String uptxtfl = tf1.getText() + "√";
+                tf2.setText(uptxtfl);
 
                 double varsqrt1 = Math.sqrt(varsqrt);
                 tf1.setText(String.valueOf(varsqrt1));
@@ -415,7 +473,7 @@ public class calculator {
         });
 
         JButton cbrt = new JButton("∛");
-        cbrt.setBounds(290, 500,50, 50 );
+        cbrt.setBounds(290, 515,50, 50 );
         cbrt.setBackground(new Color(84,84,84,255));
         cbrt.setFont(helvbut);
         cbrt.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -425,6 +483,8 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
               
                 varcbrt = Double.parseDouble(tf1.getText());
+                String uptxtfl = tf1.getText() + "∛";
+                tf2.setText(uptxtfl);
 
                 double varcbrt1 = Math.cbrt(varcbrt);
                 tf1.setText(String.valueOf(varcbrt1));
@@ -433,7 +493,7 @@ public class calculator {
         });
 
         JButton log = new JButton("log");
-        log.setBounds(350, 260,50, 50 );
+        log.setBounds(350, 275,50, 50 );
         log.setBackground(new Color(84,84,84,255));
         log.setFont(helvbut);
         log.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -451,7 +511,7 @@ public class calculator {
         });
 
         JButton log10 = new JButton("log10");
-        log10.setBounds(350, 320,50, 50 );
+        log10.setBounds(350, 335,50, 50 );
         log10.setBackground(new Color(84,84,84,255));
         log10.setFont(helvbut);
         log10.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -469,7 +529,7 @@ public class calculator {
         });
 
         JButton naddab = new JButton("A!+B!");
-        naddab.setBounds(350, 380,50, 50 );
+        naddab.setBounds(350, 395,50, 50 );
         naddab.setBackground(new Color(84,84,84,255));
         naddab.setFont(helvbut);
         naddab.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -483,7 +543,7 @@ public class calculator {
         });
 
         JButton summa = new JButton("∑ A/B");
-        summa.setBounds(350, 440,50, 50 );
+        summa.setBounds(350, 455,50, 50 );
         summa.setBackground(new Color(84,84,84,255));
         summa.setFont(helvbut);
         summa.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -501,7 +561,7 @@ public class calculator {
         });
 
         JButton prodd = new JButton("Π A/B");
-        prodd.setBounds(350, 500,50, 50 );
+        prodd.setBounds(350, 515,50, 50 );
         prodd.setBackground(new Color(84,84,84,255));
         prodd.setFont(helvbut);
         prodd.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -518,8 +578,50 @@ public class calculator {
             }
         });
 
+        JButton factorial = new JButton("n!");
+        factorial.setBounds(50, 575,50, 50 );
+        factorial.setBackground(new Color(84,84,84,255));
+        factorial.setFont(helvbut);
+        factorial.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        factorial.setForeground(Color.WHITE);
+        factorial.setFocusPainted(false);
+        factorial.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                
+            }
+        });
+
+        JButton dsummation = new JButton("∑ A/B ∑ C/D");
+        dsummation.setBounds(50, 635,110, 50 );
+        dsummation.setBackground(new Color(84,84,84,255));
+        dsummation.setFont(helvbut);
+        dsummation.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        dsummation.setForeground(Color.WHITE);
+        dsummation.setFocusPainted(false);
+        dsummation.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                
+            }
+        });
+
+        JButton dprod = new JButton("Π A/B Π C/D");
+        dprod.setBounds(170, 620,110, 50 );
+        dprod.setBackground(new Color(84,84,84,255));
+        dprod.setFont(helvbut);
+        dprod.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        dprod.setForeground(Color.WHITE);
+        dprod.setFocusPainted(false);
+        dprod.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                
+            }
+        });
+
         JButton sub = new JButton("-");
-        sub.setBounds(230, 320,50, 50 );
+        sub.setBounds(230, 335,50, 50 );
         sub.setBackground(new Color(84,84,84,255));
         sub.setFont(helvbut);
         sub.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -531,6 +633,8 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = tf1.getText() + "-";
+                        tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "-";
                         firstNumberEntered = true;
@@ -550,7 +654,7 @@ public class calculator {
         });
 
         JButton mult = new JButton("*");
-        mult.setBounds(230, 260,50, 50 );
+        mult.setBounds(230, 275,50, 50 );
         mult.setBackground(new Color(84,84,84,255));
         mult.setFont(helvbut);
         mult.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -562,6 +666,8 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = tf1.getText() + "*";
+                        tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "*";
                         firstNumberEntered = true;
@@ -580,39 +686,10 @@ public class calculator {
             }
         });
 
-        JButton div = new JButton("/");
-        div.setBounds(230, 200,50, 50 );
-        div.setBackground(new Color(84,84,84,255));
-        div.setFont(helvbut);
-        div.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-        div.setForeground(Color.WHITE);
-        div.setFocusPainted(false);
-        div.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-              
-                try {
-                    if (!firstNumberEntered) {
-                        var1 = Double.parseDouble(tf1.getText());
-                        tf1.setText("");
-                        operation = "/";
-                        firstNumberEntered = true;
-                    } else {
-                       
-                        double var2 = Double.parseDouble(tf1.getText());
-                        double divition = var1 / var2;
-                        
-                        tf1.setText(String.valueOf(divition));
-                        //tf1.setText("");
-                        firstNumberEntered = false;
-                    }
-                } catch (NumberFormatException ex) {
-                    tf1.setText("Invalid input");
-                }
-            }
-        });
+        
 
         JButton add = new JButton("+");
-        add.setBounds(230, 380,50, 50 );
+        add.setBounds(230, 395,50, 50 );
         add.setBackground(new Color(84,84,84,255));
         add.setFont(helvbut);
         add.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -624,8 +701,11 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = tf1.getText() + "+";
+                        tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "+";
+
                         firstNumberEntered = true;
                     } else {
                        
@@ -643,7 +723,7 @@ public class calculator {
         });
 
         JButton pow = new JButton("X^y");
-        pow.setBounds(290, 200,50, 50 );
+        pow.setBounds(290, 215,50, 50 );
         pow.setBackground(new Color(84,84,84,255));
         pow.setFont(helvbut);
         pow.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -676,7 +756,7 @@ public class calculator {
 
         //this is not working
         JButton poww = new JButton("X^y^z");
-        poww.setBounds(350, 200,50, 50 );
+        poww.setBounds(350, 215,50, 50 );
         poww.setBackground(new Color(84,84,84,255));
         poww.setFont(helvbut);
         poww.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -708,7 +788,7 @@ public class calculator {
 
 
         JButton eq = new JButton("=");
-        eq.setBounds(230, 440,50, 50 );
+        eq.setBounds(230, 455,50, 50 );
         eq.setBackground(new Color(84,84,84,255));
         eq.setFont(helvbut);
         eq.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
@@ -725,6 +805,7 @@ public class calculator {
                             case "+":
                                 var2 = Double.parseDouble(tf1.getText());
                                 result = var1 + var2;
+                                
                                 break;
                             case "-":
                                 var2 = Double.parseDouble(tf1.getText());
@@ -757,6 +838,8 @@ public class calculator {
                                 return;
                             }
                             tf1.setText(String.valueOf(result));
+                            //String uptxtfl = +var1+ +operation+ +var2+;
+                            tf2.setText(var1 + " " + operation + " " + var2);
                             firstNumberEntered = false;
                             operation = "";
                         }         
@@ -770,6 +853,7 @@ public class calculator {
        
         frame1.add(wel);
         frame1.add(tf1);
+        frame1.add(tf2);
         frame1.add(one);
         frame1.add(two);
         frame1.add(three);
@@ -807,6 +891,10 @@ public class calculator {
         frame1.add(poww);
         frame1.add(summa);
         frame1.add(prodd);
+        frame1.add(dsummation);
+        frame1.add(factorial);
+        frame1.add(dprod);
+        frame1.add(ver);
 
         frame1.add(img1);
         
