@@ -69,7 +69,7 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
-        JLabel ver = new JLabel("V.1.14");
+        JLabel ver = new JLabel("V.1.15");
         ver.setBounds(160,35, 400, 20);
         ver.setFont(helv12);
         ver.setForeground(Color.WHITE);
@@ -685,6 +685,90 @@ public class calculator {
             }
         });
 
+        JButton xybut = new JButton("xy");
+        xybut.setBounds(50, 605,50, 50 );
+        xybut.setBackground(new Color(84,84,84,255));
+        xybut.setFont(helvbut);
+        xybut.setBorder(new EmptyBorder(0, 0, 0, 0));
+        xybut.setForeground(Color.WHITE);
+        xybut.setFocusPainted(false);
+        xybut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+               
+            }
+        });
+
+        JButton xaddy = new JButton("x+y");
+        xaddy.setBounds(50, 665,50, 50 );
+        xaddy.setBackground(new Color(84,84,84,255));
+        xaddy.setFont(helvbut);
+        xaddy.setBorder(new EmptyBorder(0, 0, 0, 0));
+        xaddy.setForeground(Color.WHITE);
+        xaddy.setFocusPainted(false);
+        xaddy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+               
+            }
+        });
+
+        JButton doubsl = new JButton("//");
+        doubsl.setBounds(50, 725,50, 50 );
+        doubsl.setBackground(new Color(84,84,84,255));
+        doubsl.setFont(helvbut);
+        doubsl.setBorder(new EmptyBorder(0, 0, 0, 0));
+        doubsl.setForeground(Color.WHITE);
+        doubsl.setFocusPainted(false);
+        doubsl.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                
+            }
+        });
+
+        JButton cxbut = new JButton("Cx");
+        cxbut.setBounds(50, 395,110, 50 );
+        cxbut.setBackground(new Color(84,84,84,255));
+        cxbut.setFont(helvbut);
+        cxbut.setBorder(new EmptyBorder(0, 0, 0, 0));
+        cxbut.setForeground(Color.WHITE);
+        cxbut.setFocusPainted(false);
+        cxbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                
+            }
+        });
+
+        JButton xaddcbut = new JButton("x + C");
+        xaddcbut.setBounds(170, 395,110, 50 );
+        xaddcbut.setBackground(new Color(84,84,84,255));
+        xaddcbut.setFont(helvbut);
+        xaddcbut.setBorder(new EmptyBorder(0, 0, 0, 0));
+        xaddcbut.setForeground(Color.WHITE);
+        xaddcbut.setFocusPainted(false);
+        xaddcbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                
+            }
+        });
+
+        JButton xexcbut = new JButton("x ^ c");
+        xexcbut.setBounds(290, 395,110, 50 );
+        xexcbut.setBackground(new Color(84,84,84,255));
+        xexcbut.setFont(helvbut);
+        xexcbut.setBorder(new EmptyBorder(0, 0, 0, 0));
+        xexcbut.setForeground(Color.WHITE);
+        xexcbut.setFocusPainted(false);
+        xexcbut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              
+                
+            }
+        });
+
         JButton sub = new JButton("-");
         sub.setBounds(350, 605,50, 50 );
         sub.setBackground(new Color(249,77,0));
@@ -785,7 +869,7 @@ public class calculator {
         });
 
         JButton pow = new JButton("X^y");
-        pow.setBounds(290, 215,50, 50 );
+        pow.setBounds(350, 275,50, 50 );
         pow.setBackground(new Color(84,84,84,255));
         pow.setFont(helvbut);
         pow.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -820,7 +904,7 @@ public class calculator {
 
         //this is not working
         JButton poww = new JButton("X^y^z");
-        poww.setBounds(350, 215,50, 50 );
+        poww.setBounds(290, 215,110, 50 );
         poww.setBackground(new Color(84,84,84,255));
         poww.setFont(helvbut);
         poww.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -960,6 +1044,12 @@ public class calculator {
         frame1.add(dprod);
         frame1.add(ver);
         frame1.add(ndivab);
+        frame1.add(xybut);
+        frame1.add(xaddy);
+        frame1.add(doubsl);
+        frame1.add(cxbut);
+        frame1.add(xaddcbut);
+        frame1.add(xexcbut);
 
         frame1.add(img1);
         
