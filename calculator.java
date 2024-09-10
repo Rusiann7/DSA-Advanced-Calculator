@@ -69,7 +69,7 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
-        JLabel ver = new JLabel("V.1.15");
+        JLabel ver = new JLabel("V.1.17");
         ver.setBounds(160,35, 400, 20);
         ver.setFont(helv12);
         ver.setForeground(Color.WHITE);
@@ -314,19 +314,6 @@ public class calculator {
                tf1.setText(tf1.getText() + "0");
             }
         });
-
-        //JButton dzero = new JButton("00");
-        //dzero.setBounds(110, 455,50, 50 );
-        //dzero.setBackground(new Color(84,84,84,255));
-        //dzero.setFont(helvbut);
-        //dzero.setBorder(new EmptyBorder(0, 0, 0, 0));
-        //dzero.setForeground(Color.WHITE);
-        //dzero.setFocusPainted(false);
-        //dzero.addActionListener(new ActionListener() {
-        //    public void actionPerformed(ActionEvent e) {
-        //       tf1.setText(tf1.getText() + "00");
-        //    }
-        //});
 
         JButton dot = new JButton(".");
         dot.setBounds(230, 725,50, 50 );
