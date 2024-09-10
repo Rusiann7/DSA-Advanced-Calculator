@@ -8,8 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 public class calculator {
 
-   // static double addition = 0;
-
     static double var1 = 0;
     static double var2 = 0;
     static double var3 = 0;
@@ -31,7 +29,6 @@ public class calculator {
     static double varprodd = 1;
     static int varfact = 1;
 
-    
     static double addition = 0;
     static double subtraction = 0;
     static double multiplication = 0;
@@ -540,7 +537,6 @@ public class calculator {
         naddab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                //varfact = Integer.parseInt(tf1.getText());
                 String uptxtfl = vara + "! + " +varb+ "!";
                 tf2.setText(uptxtfl);
 
@@ -638,9 +634,6 @@ public class calculator {
                 double varfact1 = factorial(varfact);
 
                 tf1.setText(String.valueOf(varfact1));
-                //tf2.setText();
-                
-
             }
         });
 
@@ -820,8 +813,6 @@ public class calculator {
             }
         });
 
-        
-
         JButton add = new JButton("+");
         add.setBounds(350, 665,50, 50 );
         add.setBackground(new Color(249,77,0));
@@ -912,7 +903,6 @@ public class calculator {
                         double resultpow =(Math.pow(var1,var2));
                         
                         tf1.setText(String.valueOf(resultpow));
-                        //tf1.setText("");
                         firstNumberEntered = false;
                     }
                 } catch (NumberFormatException ex) {
@@ -920,7 +910,6 @@ public class calculator {
                 }
             }
         });
-
 
         JButton eq = new JButton("=");
         eq.setBounds(290, 725,110, 50 );
@@ -935,7 +924,6 @@ public class calculator {
                 try {
                     if (firstNumberEntered) {
                         double result = 0;
-                        // Switch-case for different operations
                         switch (operation) {
                             case "+":
                                 var2 = Double.parseDouble(tf1.getText());
@@ -973,7 +961,6 @@ public class calculator {
                                 return;
                             }
                             tf1.setText(String.valueOf(result));
-                            //String uptxtfl = +var1+ +operation+ +var2+;
                             tf2.setText(var1 + " " + operation + " " + var2);
                             firstNumberEntered = false;
                             operation = "";
@@ -982,10 +969,8 @@ public class calculator {
                         tf1.setText("Syntax Error"); 
                         }   
                 }    
-            
         });
 
-       
         frame1.add(wel);
         frame1.add(tf1);
         frame1.add(tf2);
@@ -999,7 +984,6 @@ public class calculator {
         frame1.add(eight);
         frame1.add(nine);
         frame1.add(zero);
-        //frame1.add(dzero);
         frame1.add(dot);
         frame1.add(add);
         frame1.add(sub);
@@ -1040,9 +1024,7 @@ public class calculator {
 
         frame1.add(img1);
         
-        
         frame1.revalidate();
         frame1.repaint();
-
     }   
 }
