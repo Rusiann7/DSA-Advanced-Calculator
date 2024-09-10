@@ -29,11 +29,21 @@ public class calculator {
     static double varnaddab = 0;
     static double varsumma = 0;
     static double varprodd = 1;
-    //static String uptxtfl;
+    static int varfact = 1;
+
     
     static double addition = 0;
     static double subtraction = 0;
     static double multiplication = 0;
+
+    public static int factorial(int n) {
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
     public static void main(String []args){
 
         Font helvfont = new Font("Helvetica", Font.PLAIN,22);
@@ -59,7 +69,7 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
-        JLabel ver = new JLabel("V.1.12");
+        JLabel ver = new JLabel("V.1.14");
         ver.setBounds(160,35, 400, 20);
         ver.setFont(helv12);
         ver.setForeground(Color.WHITE);
@@ -156,7 +166,7 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
-                        String uptxtfl = tf1.getText() + "/";
+                        String uptxtfl = tf1.getText() + " /";
                         tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "/";
@@ -468,7 +478,7 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
               
                 varsqrt = Double.parseDouble(tf1.getText());
-                String uptxtfl = tf1.getText() + "√";
+                String uptxtfl = "√" + tf1.getText();
                 tf2.setText(uptxtfl);
 
                 double varsqrt1 = Math.sqrt(varsqrt);
@@ -488,7 +498,7 @@ public class calculator {
             public void actionPerformed(ActionEvent e) {
               
                 varcbrt = Double.parseDouble(tf1.getText());
-                String uptxtfl = tf1.getText() + "∛";
+                String uptxtfl = "∛" + tf1.getText();
                 tf2.setText(uptxtfl);
 
                 double varcbrt1 = Math.cbrt(varcbrt);
@@ -543,6 +553,20 @@ public class calculator {
         naddab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
+                //varfact = Integer.parseInt(tf1.getText());
+                String uptxtfl = vara + "! + " +varb+ "!";
+                tf2.setText(uptxtfl);
+
+                int varfacta = (int) vara;
+                int varfactb = (int) varb;
+                
+
+                double varfact1 = factorial(varfacta);
+                double varfact2 = factorial(varfactb);
+
+                double varfactres = varfact1 + varfact2;
+
+                tf1.setText(String.valueOf(varfactres));
                 
             }
         });
@@ -557,6 +581,19 @@ public class calculator {
         ndivab.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
+                String uptxtfl = vara + "! / " +varb+ "!";
+                tf2.setText(uptxtfl);
+
+                int varfacta = (int) vara;
+                int varfactb = (int) varb;
+                
+
+                double varfact1a = factorial(varfacta);
+                double varfact2a = factorial(varfactb);
+
+                double varfactresa = varfact1a / varfact2a;
+
+                tf1.setText(String.valueOf(varfactresa));
                 
             }
         });
@@ -607,7 +644,16 @@ public class calculator {
         factorial.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                
+                varfact = Integer.parseInt(tf1.getText());
+                String uptxtfl = tf1.getText() + "!";
+                tf2.setText(uptxtfl);
+
+                double varfact1 = factorial(varfact);
+
+                tf1.setText(String.valueOf(varfact1));
+                //tf2.setText();
                 
+
             }
         });
 
@@ -652,7 +698,7 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
-                        String uptxtfl = tf1.getText() + "-";
+                        String uptxtfl = tf1.getText() + " -";
                         tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "-";
@@ -684,7 +730,7 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
-                        String uptxtfl = tf1.getText() + "*";
+                        String uptxtfl = tf1.getText() + " *";
                         tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "*";
@@ -718,7 +764,7 @@ public class calculator {
                 try {
                     if (!firstNumberEntered) {
                         var1 = Double.parseDouble(tf1.getText());
-                        String uptxtfl = tf1.getText() + "+";
+                        String uptxtfl = tf1.getText() + " +";
                         tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "+";
