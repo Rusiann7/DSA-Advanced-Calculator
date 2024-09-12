@@ -109,6 +109,8 @@ public class calculator {
                var1 = 0;
                var2 = 0;
 
+               operation = "";
+
                 vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
                 tf2.setText("");
@@ -527,7 +529,7 @@ public class calculator {
             }
         });
 
-        JButton naddab = new JButton("A!+B!");
+        JButton naddab = new JButton("A! + B!");
         naddab.setBounds(50, 275,110, 50 );
         naddab.setBackground(new Color(84,84,84,255));
         naddab.setFont(helvbut);
@@ -554,7 +556,7 @@ public class calculator {
             }
         });
 
-        JButton ndivab = new JButton("A!/B!");
+        JButton ndivab = new JButton("A! / B!");
         ndivab.setBounds(170, 275,110, 50 );
         ndivab.setBackground(new Color(84,84,84,255));
         ndivab.setFont(helvbut);
@@ -891,23 +893,7 @@ public class calculator {
         poww.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
 
-                try {
-                    if (!firstNumberEntered) {
-                        var1 = Double.parseDouble(tf1.getText());
-                        tf1.setText("");
-                        operation = "pow";
-                        firstNumberEntered = true;
-                    } else {
-                       
-                        double var2 = Double.parseDouble(tf1.getText());
-                        double resultpow =(Math.pow(var1,var2));
-                        
-                        tf1.setText(String.valueOf(resultpow));
-                        firstNumberEntered = false;
-                    }
-                } catch (NumberFormatException ex) {
-                    tf1.setText("Invalid input");
-                }
+                
             }
         });
 
