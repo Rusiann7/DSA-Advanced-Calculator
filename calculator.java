@@ -13,6 +13,8 @@ public class calculator {
     static double var3 = 0;
     static String operation = "";
     static boolean firstNumberEntered = false;
+    static boolean secondNumberEntered = false;
+    static boolean powbot = false;
     static long vara = 0;
     static long varb = 0;
     static long varc = 0;
@@ -110,6 +112,9 @@ public class calculator {
                var2 = 0;
 
                operation = "";
+
+               firstNumberEntered = false;
+               secondNumberEntered = false;
 
                 vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
@@ -893,7 +898,40 @@ public class calculator {
         poww.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
 
-                
+                try {
+                    if (!firstNumberEntered && !secondNumberEntered) {
+                    //this the main number
+                        var1 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = tf1.getText() + "^";
+                        tf2.setText(uptxtfl);
+                        tf1.setText("");
+                        operation = "^^";
+                        firstNumberEntered = true;
+                    } else if (firstNumberEntered && !secondNumberEntered){
+                        //this the first exponent
+                        var3 = Double.parseDouble(tf1.getText());
+                        String uptxtfl = (tf2.getText() + tf1.getText() + "^");
+                        tf2.setText(uptxtfl);
+                        tf1.setText("");
+                        secondNumberEntered = true;
+                    }else if (firstNumberEntered && secondNumberEntered){
+                       
+                        double var2 = Double.parseDouble(tf1.getText());
+                        double resultpow1 = (Math.pow(var3, var2));
+                        double resultpow =(Math.pow(var1,resultpow1));
+
+                        String uptxtfl = (tf2.getText() + tf1.getText());
+                        tf2.setText(uptxtfl);
+                        
+                        tf1.setText(String.valueOf(resultpow));
+
+                        firstNumberEntered = false;
+                        secondNumberEntered = false;
+                    }
+                } catch (NumberFormatException ex) {
+                    tf1.setText("Invalid input");
+                }
+
             }
         });
 
@@ -939,6 +977,13 @@ public class calculator {
                                 var2 = Double.parseDouble(tf1.getText());
                                 result = (Math.pow(var1, var2));
                                 break;
+                            case "^^":
+                                var2 = Double.parseDouble(tf1.getText());
+                                double resultpow1 = (Math.pow(var3, var2));
+                                result = (Math.pow(var1, resultpow1));
+                                powbot = true;
+
+                                break;
 
                                 //divider
                                 
@@ -946,10 +991,16 @@ public class calculator {
                                 tf1.setText("Syntax Error");
                                 return;
                             }
-                            tf1.setText(String.valueOf(result));
-                            tf2.setText(var1 + " " + operation + " " + var2);
-                            firstNumberEntered = false;
-                            operation = "";
+                            if(powbot){
+                                tf1.setText(String.valueOf(result));
+                                tf2.setText(var1 + " " + operation + " " + var2 + " " +operation+ " " +var3);
+                            } else {
+                                tf1.setText(String.valueOf(result));
+                                tf2.setText(var1 + " " + operation + " " + var2);
+                                firstNumberEntered = false;
+                                operation = "";
+                            }
+                            
                         }         
                     }catch(NumberFormatException ex){
                         tf1.setText("Syntax Error"); 
