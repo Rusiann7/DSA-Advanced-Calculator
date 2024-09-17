@@ -74,7 +74,7 @@ public class calculator {
         ver.setForeground(Color.WHITE);
 
         JLabel vars = new JLabel("A=0, B=0, C=0, D=0");
-        vars.setBounds(260,77, 400, 30);
+        vars.setBounds(245,79, 400, 30);
         vars.setFont(helv);
         vars.setForeground(Color.WHITE);
 
@@ -344,7 +344,7 @@ public class calculator {
                
                 vara = Long.parseLong(tf1.getText());
 
-                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
             }
         });
@@ -361,7 +361,7 @@ public class calculator {
 
                 varb = Long.parseLong(tf1.getText());
         
-                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
             }
         });
@@ -378,7 +378,7 @@ public class calculator {
                 
                 varc = Long.parseLong(tf1.getText());
         
-                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
             }
         });
@@ -395,7 +395,7 @@ public class calculator {
               
                 vard = Long.parseLong(tf1.getText());
         
-                vars.setText(String.valueOf("A= "+vara+", B= "+varb+", C= "+varc+", D= " +vard));
+                vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
                 tf1.setText("");
             }
         });
