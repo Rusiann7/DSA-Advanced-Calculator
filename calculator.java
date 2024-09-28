@@ -25,14 +25,14 @@ public class calculator {
     static double negvar = 0;
     static double varlog = 0;
     static double varlogb = 0;
-    static double varnaddab = 0;
+    //static double varnaddab = 0;
     static double varsumma = 0;
     static double varprodd = 1;
     static int varfact = 1;
 
-    static double addition = 0;
-    static double subtraction = 0;
-    static double multiplication = 0;
+    //static double addition = 0;
+    //static double subtraction = 0;
+    //static double multiplication = 0;
 
     public static int factorial(int n) {
         int fact = 1;
@@ -789,7 +789,7 @@ public class calculator {
         eq.addActionListener((ActionEvent e) -> {
             try {
                 if (firstNumberEntered) {
-                    double result = 0;
+                    double result;
                     switch (operation) {
                         case "+":
                             var2 = Double.parseDouble(tf1.getText());
