@@ -414,7 +414,6 @@ public class calculator {
                 
                 double negvar1 = -negvar;
                 tf1.setText(String.valueOf(negvar1));
-
             }
         });
 
@@ -432,7 +431,6 @@ public class calculator {
                 String uptxtfl = tf1.getText() + " CEIL";
                 tf2.setText(uptxtfl);
                 
-
                 double varcel1 = Math.ceil(varcel);
                 tf1.setText(String.valueOf(varcel1));
             }
@@ -454,7 +452,6 @@ public class calculator {
 
                 double varflr1 = Math.floor(varflr);
                 tf1.setText(String.valueOf(varflr1));
-                
             }
         });
 
@@ -474,7 +471,6 @@ public class calculator {
 
                 double varsqrt1 = Math.sqrt(varsqrt);
                 tf1.setText(String.valueOf(varsqrt1));
-                
             }
         });
 
@@ -494,7 +490,6 @@ public class calculator {
 
                 double varcbrt1 = Math.cbrt(varcbrt);
                 tf1.setText(String.valueOf(varcbrt1));
-                
             }
         });
 
@@ -512,7 +507,6 @@ public class calculator {
 
                 double varlog1 = Math.log(varlog);
                 tf1.setText(String.valueOf(varlog1));
-
             }
         });
 
@@ -530,7 +524,6 @@ public class calculator {
 
                 double varlogb1 = Math.log10(varlogb);
                 tf1.setText(String.valueOf(varlogb1));
-
             }
         });
 
@@ -555,9 +548,7 @@ public class calculator {
                 double varfact2 = factorial(varfactb);
 
                 double varfactres = varfact1 + varfact2;
-
                 tf1.setText(String.valueOf(varfactres));
-                
             }
         });
 
@@ -582,9 +573,7 @@ public class calculator {
                 double varfact2a = factorial(varfactb);
 
                 double varfactresa = varfact1a / varfact2a;
-
                 tf1.setText(String.valueOf(varfactresa));
-                
             }
         });
 
@@ -602,7 +591,6 @@ public class calculator {
                     varsumma = varsumma + varb;
                 }
                 tf1.setText(String.valueOf(varsumma));
-                
             }
         });
 
@@ -620,7 +608,6 @@ public class calculator {
                     varprodd = varprodd * i;
                 }
                 tf1.setText(String.valueOf(varprodd));
-                
             }
         });
 
@@ -837,7 +824,6 @@ public class calculator {
                         tf2.setText(uptxtfl);
                         tf1.setText("");
                         operation = "+";
-
                         firstNumberEntered = true;
                     } else {
                         double var2 = Double.parseDouble(tf1.getText());
@@ -872,12 +858,10 @@ public class calculator {
                         operation = "^";
                         firstNumberEntered = true;
                     } else {
-                       
                         double var2 = Double.parseDouble(tf1.getText());
                         double resultpow =(Math.pow(var1,var2));
                         
                         tf1.setText(String.valueOf(resultpow));
-                        //tf1.setText("");
                         firstNumberEntered = false;
                     }
                 } catch (NumberFormatException ex) {
@@ -886,8 +870,6 @@ public class calculator {
             }
         });
 
-
-        //this is not working
         JButton poww = new JButton("X^y^z");
         poww.setBounds(290, 215,110, 50 );
         poww.setBackground(new Color(84,84,84,255));
@@ -931,7 +913,6 @@ public class calculator {
                 } catch (NumberFormatException ex) {
                     tf1.setText("Invalid input");
                 }
-
             }
         });
 
@@ -951,8 +932,7 @@ public class calculator {
                         switch (operation) {
                             case "+":
                                 var2 = Double.parseDouble(tf1.getText());
-                                result = var1 + var2;
-                                
+                                result = var1 + var2;            
                                 break;
                             case "-":
                                 var2 = Double.parseDouble(tf1.getText());
@@ -985,8 +965,6 @@ public class calculator {
 
                                 break;
 
-                                //divider
-                                
                                 default:
                                 tf1.setText("Syntax Error");
                                 return;
@@ -1000,7 +978,6 @@ public class calculator {
                                 firstNumberEntered = false;
                                 operation = "";
                             }
-                            
                         }         
                     }catch(NumberFormatException ex){
                         tf1.setText("Syntax Error"); 
