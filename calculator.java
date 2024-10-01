@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
@@ -81,7 +82,6 @@ public class calculator {
         tf2.setFont(helv14);
         tf2.setForeground(Color.WHITE);
         tf2.setBorder(new EmptyBorder(0, 0, 0, 0));
-        tf2.setText("0");
 
         JTextField tf1 = new JTextField();
         tf1.setBounds(45,155, 400, 50);
@@ -89,7 +89,6 @@ public class calculator {
         tf1.setFont(helvfont);
         tf1.setForeground(Color.WHITE);
         tf1.setBorder(new EmptyBorder(0, 0, 0, 0));
-        tf1.setText("0");
 
         JButton ac = new JButton("AC");
         ac.setBounds(170, 485,50, 50 );
@@ -115,8 +114,8 @@ public class calculator {
             secondNumberEntered = false;
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
-            tf1.setText("0");
-            tf2.setText("0");
+            tf1.setText("");
+            tf2.setText("");
         });
 
         JButton clr = new JButton("C");
@@ -184,7 +183,6 @@ public class calculator {
         seven.setForeground(Color.WHITE);
         seven.setFocusPainted(false);
         seven.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "7");
         });
 
@@ -196,7 +194,6 @@ public class calculator {
         eight.setForeground(Color.WHITE);
         eight.setFocusPainted(false);
         eight.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "8");
         });
 
@@ -208,7 +205,6 @@ public class calculator {
         nine.setForeground(Color.WHITE);
         nine.setFocusPainted(false);
         nine.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "9");
         });
 
@@ -220,7 +216,6 @@ public class calculator {
         four.setForeground(Color.WHITE);
         four.setFocusPainted(false);
         four.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "4");
         });
 
@@ -232,7 +227,6 @@ public class calculator {
         five.setForeground(Color.WHITE);
         five.setFocusPainted(false);
         five.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "5");
         });
 
@@ -244,7 +238,6 @@ public class calculator {
         six.setForeground(Color.WHITE);
         six.setFocusPainted(false);
         six.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "6");
         });
 
@@ -256,7 +249,6 @@ public class calculator {
         one.setForeground(Color.WHITE);
         one.setFocusPainted(false);
         one.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "1");
         });
 
@@ -268,7 +260,6 @@ public class calculator {
         two.setForeground(Color.WHITE);
         two.setFocusPainted(false);
         two.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "2");
         });
 
@@ -280,7 +271,6 @@ public class calculator {
         three.setForeground(Color.WHITE);
         three.setFocusPainted(false);
         three.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "3");
         });
 
@@ -292,7 +282,6 @@ public class calculator {
         zero.setForeground(Color.WHITE);
         zero.setFocusPainted(false);
         zero.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + "0");
         });
 
@@ -304,7 +293,6 @@ public class calculator {
         dot.setForeground(Color.WHITE);
         dot.setFocusPainted(false);
         dot.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             tf1.setText(tf1.getText() + ".");
         });
 
@@ -319,7 +307,7 @@ public class calculator {
             vara = Long.parseLong(tf1.getText());
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
-            tf1.setText("0");
+            tf1.setText("");
         });
 
         JButton Bbut = new JButton("B");
@@ -333,7 +321,7 @@ public class calculator {
             varb = Long.parseLong(tf1.getText());
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
-            tf1.setText("0");
+            tf1.setText("");
         });
 
         JButton Cbut = new JButton("C");
@@ -347,7 +335,7 @@ public class calculator {
             varc = Long.parseLong(tf1.getText());
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
-            tf1.setText("0");
+            tf1.setText("");
         });
 
         JButton Dbut = new JButton("D");
@@ -361,7 +349,7 @@ public class calculator {
             vard = Long.parseLong(tf1.getText());
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
-            tf1.setText("0");
+            tf1.setText("");
         });
 
         JButton neg = new JButton("-/+");
@@ -372,7 +360,6 @@ public class calculator {
         neg.setForeground(Color.WHITE);
         neg.setFocusPainted(false);
         neg.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             negvar = Double.parseDouble(tf1.getText());
             
             double negvar1 = -negvar;
@@ -387,7 +374,6 @@ public class calculator {
         cel.setForeground(Color.WHITE);
         cel.setFocusPainted(false);
         cel.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             varcel = Double.parseDouble(tf1.getText());
             String uptxtfl = tf1.getText() + " CEIL";
             tf2.setText(uptxtfl);
@@ -404,7 +390,6 @@ public class calculator {
         flr.setForeground(Color.WHITE);
         flr.setFocusPainted(false);
         flr.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             varflr = Double.parseDouble(tf1.getText());
             String uptxtfl = tf1.getText() + " FLR";
             tf2.setText(uptxtfl);
@@ -421,7 +406,6 @@ public class calculator {
         sqrt.setForeground(Color.WHITE);
         sqrt.setFocusPainted(false);
         sqrt.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             varsqrt = Double.parseDouble(tf1.getText());
             String uptxtfl = "√" + tf1.getText();
             tf2.setText(uptxtfl);
@@ -438,7 +422,6 @@ public class calculator {
         cbrt.setForeground(Color.WHITE);
         cbrt.setFocusPainted(false);
         cbrt.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             varcbrt = Double.parseDouble(tf1.getText());
             String uptxtfl = "∛" + tf1.getText();
             tf2.setText(uptxtfl);
@@ -455,7 +438,6 @@ public class calculator {
         log.setForeground(Color.WHITE);
         log.setFocusPainted(false);
         log.addActionListener((ActionEvent e) -> {
-            tf1.setText("");
             varlog = Double.parseDouble(tf1.getText());
             
             double varlog1 = Math.log(varlog);
