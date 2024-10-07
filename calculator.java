@@ -28,6 +28,8 @@ public class calculator {
     static double varsumma = 0;
     static double varprodd = 1;
     static int varfact = 1;
+    static int n = 0;
+    static int r = 0;
 
     //static double addition = 0;
     //static double subtraction = 0;
@@ -39,6 +41,10 @@ public class calculator {
             fact *= i;
         }
         return fact;
+    }
+
+    private static long combination(int n, int r) {
+        return factorial(n) / (factorial(r) * factorial(n - r));
     }
 
     public static void main(String []args){
@@ -576,8 +582,30 @@ public class calculator {
         xybut.setForeground(Color.WHITE);
         xybut.setFocusPainted(false);
         xybut.addActionListener((ActionEvent e) -> {
-        });
 
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    tf2.setText("Enter y coordinate");
+                    tf1.setText("");
+                    operation = "xy";
+                    firstNumberEntered = true;
+                } else {
+                    var2 = Double.parseDouble(tf1.getText());
+                    String result = "(" + var1 + ", " + var2 + ")";
+                    tf1.setText(result);
+                    tf2.setText("Coordinate: " + result);
+                    firstNumberEntered = false;
+                    operation = "";
+                }
+            } catch (NumberFormatException ex) {
+                tf1.setText("Syntax Error");
+            } catch (Exception ex) {
+                tf1.setText("Syntax Error");
+            }
+        
+    });
+    
         JButton xaddy = new JButton("x+y");
         xaddy.setBounds(50, 665,50, 50 );
         xaddy.setBackground(new Color(84,84,84,255));
@@ -606,6 +634,30 @@ public class calculator {
         cxbut.setForeground(Color.WHITE);
         cxbut.setFocusPainted(false);
         cxbut.addActionListener((ActionEvent e) -> {
+
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    String uptxtfl = "C(" + tf1.getText() + ", ";
+                    tf2.setText(uptxtfl);
+                    tf1.setText("");
+                    operation = "Cx";
+                    firstNumberEntered = true;
+                } else {
+                    n = (int)var1;
+                    r = Integer.parseInt(tf1.getText());
+                    if (r <= n) {
+                        long result = combination(n, r);
+                        tf1.setText(String.valueOf(result));
+                        tf2.setText("C(" + n + ", " + r + ")");
+                        firstNumberEntered = false;
+                    } else {
+                        tf1.setText("Syntax Error");
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                tf1.setText("Syntax Error");
+            }
         });
 
         JButton xaddcbut = new JButton("x + C");
@@ -824,7 +876,15 @@ public class calculator {
                             powbot = true;
                             
                             break;
-                            
+                        case "Cx":
+                        n = (int)var1;
+                        r = Integer.parseInt(tf1.getText());
+                        if (r <= n) {
+                            result = combination(n, r);
+                            tf1.setText(String.valueOf(result));
+                            tf2.setText("C(" + n + ", " + r + ")");
+                            firstNumberEntered = false;
+                        } 
                         default:
                             tf1.setText("Syntax Error");
                             return;
