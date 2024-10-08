@@ -13,6 +13,7 @@ public class calculator {
     static boolean firstNumberEntered = false;
     static boolean secondNumberEntered = false;
     static boolean powbot = false;
+    static boolean cx = false;
     static long vara = 0;
     static long varb = 0;
     static long varc = 0;
@@ -30,6 +31,7 @@ public class calculator {
     static int varfact = 1;
     static int n = 0;
     static int r = 0;
+    static long result1 = 0;
 
     //static double addition = 0;
     //static double subtraction = 0;
@@ -113,6 +115,9 @@ public class calculator {
             
             var1 = 0;
             var2 = 0;
+
+            r = 0;
+            n = 0;
             
             operation = "";
             
@@ -840,7 +845,7 @@ public class calculator {
         eq.addActionListener((ActionEvent e) -> {
             try {
                 if (firstNumberEntered) {
-                    double result;
+                    double result =0;
                     switch (operation) {
                         case "+":
                             var2 = Double.parseDouble(tf1.getText());
@@ -877,14 +882,15 @@ public class calculator {
                             
                             break;
                         case "Cx":
-                        n = (int)var1;
+                        n = (int) Math.round(var1);
                         r = Integer.parseInt(tf1.getText());
                         if (r <= n) {
-                            result = combination(n, r);
-                            tf1.setText(String.valueOf(result));
+                            result1 = combination(n, r);
+                            tf1.setText(String.valueOf(result1));
                             tf2.setText("C(" + n + ", " + r + ")");
-                            firstNumberEntered = false;
+                            cx = true;
                         } 
+                        break;
                         default:
                             tf1.setText("Syntax Error");
                             return;
@@ -892,7 +898,11 @@ public class calculator {
                     if(powbot){
                         tf1.setText(String.valueOf(result));
                         tf2.setText(var1 + " " + operation + " " + var2 + " " +operation+ " " +var3);
-                    } else {
+                    } else if (cx) {
+                        tf1.setText(String.valueOf(result1));
+                        tf2.setText("C(" + n + ", " + r + ")");
+                    }
+                     else {
                         tf1.setText(String.valueOf(result));
                         tf2.setText(var1 + " " + operation + " " + var2);
                         firstNumberEntered = false;
