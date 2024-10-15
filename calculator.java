@@ -53,7 +53,7 @@ public class calculator {
 
         Font helvfont = new Font("Helvetica", Font.PLAIN,22);
         Font helvbut = new Font("Helvetica", Font.BOLD, 16);
-        Font helv = new Font("Helvetica", Font.PLAIN, 13);
+        Font helv = new Font("Helvetica", Font.PLAIN, 15);
         Font helv14 = new Font("Helvetica", Font.BOLD, 15);
         Font helv12 = new Font("Helvetica", Font.PLAIN, 12);
 
@@ -74,7 +74,7 @@ public class calculator {
         wel.setFont(helvfont);
         wel.setForeground(Color.WHITE);
 
-        JLabel ver = new JLabel("V.1.17");
+        JLabel ver = new JLabel("V.2.A");
         ver.setBounds(160,35, 400, 20);
         ver.setFont(helv12);
         ver.setForeground(Color.WHITE);
@@ -151,11 +151,24 @@ public class calculator {
         per.setForeground(Color.WHITE);
         per.setFocusPainted(false);
         per.addActionListener((ActionEvent e) -> {
-            double var4 = Double.parseDouble(tf1.getText());
-            String uptxtfl = tf1.getText() + "%";
-            tf2.setText(uptxtfl);
-            double result = var4 / 100;
-            tf1.setText(String.valueOf(result));
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    String uptxtfl = tf1.getText() + " %";
+                    tf2.setText(uptxtfl);
+                    tf1.setText("");
+                    operation = "%";
+                    firstNumberEntered = true;
+                } else {
+                    double var4 = Double.parseDouble(tf1.getText());
+                    double modulus = var1 % var4;
+                    tf1.setText(String.valueOf(modulus));
+                    tf2.setText(var1 + " " + operation + " " + var4);
+                    firstNumberEntered = false;
+                }
+            }catch (NumberFormatException ex) {
+                tf1.setText("Invalid input");
+            }
         });
 
         JButton div = new JButton("/");
@@ -567,6 +580,22 @@ public class calculator {
         dsummation.setForeground(Color.WHITE);
         dsummation.setFocusPainted(false);
         dsummation.addActionListener((ActionEvent e) -> {
+            int summation = 0;
+
+            int varsuma = (int) vara;
+            int varsumb = (int) varb;
+            int varsumc = (int) varc;
+            int varsumd = (int) vard;
+
+            // outside
+            for (int i = varsuma; i <= varsumb; i++) {
+                // inside
+                for (int j = varsumc; j <= varsumd; j++) {
+                    summation += (i + j);
+                }
+            }
+            tf1.setText(String.valueOf(summation)); 
+            tf2.setText("∑ i=" + vara + " - " + varb + " ∑ j=" + varc + " - " + vard + " (i + j)");
         });
 
         JButton dprod = new JButton("Π A/B Π C/D");
@@ -577,6 +606,22 @@ public class calculator {
         dprod.setForeground(Color.WHITE);
         dprod.setFocusPainted(false);
         dprod.addActionListener((ActionEvent e) -> {
+            int pi = 1;
+
+            int varproda = (int) vara;
+            int varprodb = (int) varb;
+            int varprodc = (int) varc;
+            int varprodd = (int) vard;
+
+            // outside
+            for (int i = varproda; i <= varprodb; i++) {
+                // inside
+                for (int j = varprodc; j <= varprodd; j++) {
+                    pi *= (i * j);  
+                }
+            }
+            tf1.setText(String.valueOf(pi));  
+            tf2.setText("∏ i=" + vara + " - " + varb + " ∏ j=" + varc + " - " + vard + " (i * j)");
         });
 
         JButton xybut = new JButton("xy");
@@ -609,18 +654,8 @@ public class calculator {
                 tf1.setText("Syntax Error");
             }
         
-    });
-    
-        JButton xaddy = new JButton("x+y");
-        xaddy.setBounds(50, 665,50, 50 );
-        xaddy.setBackground(new Color(84,84,84,255));
-        xaddy.setFont(helvbut);
-        xaddy.setBorder(new EmptyBorder(0, 0, 0, 0));
-        xaddy.setForeground(Color.WHITE);
-        xaddy.setFocusPainted(false);
-        xaddy.addActionListener((ActionEvent e) -> {
         });
-
+    
         JButton doubsl = new JButton("//");
         doubsl.setBounds(50, 725,50, 50 );
         doubsl.setBackground(new Color(84,84,84,255));
@@ -629,10 +664,15 @@ public class calculator {
         doubsl.setForeground(Color.WHITE);
         doubsl.setFocusPainted(false);
         doubsl.addActionListener((ActionEvent e) -> {
+            var1 = Double.parseDouble(tf1.getText());
+            double abs = Math.abs(var1);
+            tf1.setText(String.valueOf(abs));
+            String uptxtfl = "/" + var1 +"/";
+            tf2.setText(uptxtfl);
         });
 
         JButton cxbut = new JButton("Cx");
-        cxbut.setBounds(50, 395,110, 50 );
+        cxbut.setBounds(50, 395,50, 50 );
         cxbut.setBackground(new Color(84,84,84,255));
         cxbut.setFont(helvbut);
         cxbut.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -665,6 +705,21 @@ public class calculator {
             }
         });
 
+        JButton rndnum = new JButton("RND");
+        rndnum.setBounds(110, 395,50, 50 );
+        rndnum.setBackground(new Color(84,84,84,255));
+        rndnum.setFont(helvbut);
+        rndnum.setBorder(new EmptyBorder(0, 0, 0, 0));
+        rndnum.setForeground(Color.WHITE);
+        rndnum.setFocusPainted(false);
+        rndnum.addActionListener((ActionEvent e) -> {
+            var1 = Double.parseDouble(tf1.getText());
+            double rnd = Math.round(var1);
+            tf1.setText(String.valueOf(rnd));
+            String uptxtfl = "" +var1;
+            tf2.setText(uptxtfl);
+        });
+
         JButton xaddcbut = new JButton("x + C");
         xaddcbut.setBounds(170, 395,110, 50 );
         xaddcbut.setBackground(new Color(84,84,84,255));
@@ -683,6 +738,16 @@ public class calculator {
         xexcbut.setForeground(Color.WHITE);
         xexcbut.setFocusPainted(false);
         xexcbut.addActionListener((ActionEvent e) -> {
+        });
+
+        JButton xaddy = new JButton("x+y");
+        xaddy.setBounds(50, 665,50, 50 );
+        xaddy.setBackground(new Color(84,84,84,255));
+        xaddy.setFont(helvbut);
+        xaddy.setBorder(new EmptyBorder(0, 0, 0, 0));
+        xaddy.setForeground(Color.WHITE);
+        xaddy.setFocusPainted(false);
+        xaddy.addActionListener((ActionEvent e) -> {
         });
 
         JButton sub = new JButton("-");
@@ -891,6 +956,10 @@ public class calculator {
                             cx = true;
                         } 
                         break;
+                        case "%":
+                        var2 = Double.parseDouble(tf1.getText());
+                        result = var1 % var2;
+                        break;
                         default:
                             tf1.setText("Syntax Error");
                             return;
@@ -964,6 +1033,7 @@ public class calculator {
         frame1.add(cxbut);
         frame1.add(xaddcbut);
         frame1.add(xexcbut);
+        frame1.add(rndnum);
 
         frame1.add(img1);
         
