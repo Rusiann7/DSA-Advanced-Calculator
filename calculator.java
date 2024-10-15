@@ -14,6 +14,8 @@ public class calculator {
     static boolean secondNumberEntered = false;
     static boolean powbot = false;
     static boolean cx = false;
+    static boolean xpc=false;
+    static boolean xaddc=false;
     static long vara = 0;
     static long varb = 0;
     static long varc = 0;
@@ -32,6 +34,8 @@ public class calculator {
     static int n = 0;
     static int r = 0;
     static long result1 = 0;
+    static double fresults1 = 1;
+    static double fresults2 = 0;
 
     //static double addition = 0;
     //static double subtraction = 0;
@@ -123,6 +127,17 @@ public class calculator {
             
             firstNumberEntered = false;
             secondNumberEntered = false;
+
+            fresults1 =0;
+            fresults2 =1;
+            result1 = 0;
+
+            powbot = false;
+            cx = false;
+            xpc=false;
+            xaddc=false;
+
+            
             
             vars.setText(String.valueOf("A="+vara+", B="+varb+", C="+varc+", D=" +vard));
             tf1.setText("");
@@ -728,6 +743,31 @@ public class calculator {
         xaddcbut.setForeground(Color.WHITE);
         xaddcbut.setFocusPainted(false);
         xaddcbut.addActionListener((ActionEvent e) -> {
+            
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    String uptxtfl = "C(" + tf1.getText() + ", ";
+                    tf2.setText(uptxtfl);
+                    tf1.setText("");
+                    operation = "x+c";
+                    firstNumberEntered = true;
+                } else {
+                    n = (int)var1;
+                    r = Integer.parseInt(tf1.getText());
+                    if (r <= n) {
+                        long result = combination(n, r);
+                        double fresult = var1 + result;
+                        tf1.setText(String.valueOf(fresult));
+                        tf2.setText("x(" + var1 + ") + C(" + n + ", " + r + ")");
+                        firstNumberEntered = false;
+                    } else {
+                        tf1.setText("Syntax Error");
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                tf1.setText("Syntax Error");
+            }
         });
 
         JButton xexcbut = new JButton("x ^ c");
@@ -738,6 +778,31 @@ public class calculator {
         xexcbut.setForeground(Color.WHITE);
         xexcbut.setFocusPainted(false);
         xexcbut.addActionListener((ActionEvent e) -> {
+
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    String uptxtfl = "C(" + tf1.getText() + ", ";
+                    tf2.setText(uptxtfl);
+                    tf1.setText("");
+                    operation = "x^c";
+                    firstNumberEntered = true;
+                } else {
+                    n = (int)var1;
+                    r = Integer.parseInt(tf1.getText());
+                    if (r <= n) {
+                        long result = combination(n, r);
+                        double fresult = Math.pow(result, var1);
+                        tf1.setText(String.valueOf(fresult));
+                        tf2.setText("x(" + var1 + ") ^ C(" + n + ", " + r + ")");
+                        firstNumberEntered = false;
+                    } else {
+                        tf1.setText("Syntax Error");
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                tf1.setText("Syntax Error");
+            }
         });
 
         JButton xaddy = new JButton("x+y");
@@ -748,6 +813,29 @@ public class calculator {
         xaddy.setForeground(Color.WHITE);
         xaddy.setFocusPainted(false);
         xaddy.addActionListener((ActionEvent e) -> {
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    tf2.setText(var1 + " + ");
+                    tf1.setText("");
+                    operation = "x+y";
+                    firstNumberEntered = true;
+                } else {
+                    double var2 = Double.parseDouble(tf1.getText());
+                    double result = var1 + var2;
+                    tf1.setText(String.valueOf(result));
+                    tf2.setText(var1 + " + " + var2);
+                    firstNumberEntered = false;
+                    operation = "";
+                }
+            } catch (NumberFormatException ex) {
+                tf1.setText("Invalid input");
+                System.out.println("Invalid input in x+y: " + ex.getMessage());
+            } catch (Exception ex) {
+                tf1.setText("Error");
+                System.out.println("Unexpected error in x+y: " + ex.getMessage());
+                ex.printStackTrace();
+            }
         });
 
         JButton sub = new JButton("-");
@@ -944,7 +1032,6 @@ public class calculator {
                             double resultpow1 = (Math.pow(var3, var2));
                             result = (Math.pow(var1, resultpow1));
                             powbot = true;
-                            
                             break;
                         case "Cx":
                         n = (int) Math.round(var1);
@@ -960,6 +1047,31 @@ public class calculator {
                         var2 = Double.parseDouble(tf1.getText());
                         result = var1 % var2;
                         break;
+                        case "x+y":
+                        var2 = Double.parseDouble(tf1.getText());
+                            result = var1 + var2;
+                        break;
+                        case "x^c":
+                        n = (int)var1;
+                        r = Integer.parseInt(tf1.getText());
+                        if (r <= n) {
+                        long result1 = combination(n, r);
+                        fresults1 = Math.pow(result1, var1);
+                        tf1.setText(String.valueOf(fresults1));
+                        tf2.setText("x(" + var1 + ") ^ C(" + n + ", " + r + ")");
+                        xpc=true;
+                        }
+                        break;
+                        case "x+c":
+                        n = (int)var1;
+                        r = Integer.parseInt(tf1.getText());
+                        if (r <= n) {
+                        long result2 = combination(n, r);
+                        fresults2 = var1 + result2;
+                        tf1.setText(String.valueOf(fresults2));
+                        xaddc=true;
+                        }
+                        break;
                         default:
                             tf1.setText("Syntax Error");
                             return;
@@ -970,6 +1082,14 @@ public class calculator {
                     } else if (cx) {
                         tf1.setText(String.valueOf(result1));
                         tf2.setText("C(" + n + ", " + r + ")");
+                    }
+                    else if(xpc){
+                        tf1.setText(String.valueOf(fresults1));
+                        tf2.setText("x(" + var1 + ") ^ C(" + n + ", " + r + ")");
+                    }
+                    else if(xaddc){
+                        tf1.setText(String.valueOf(fresults2));
+                        tf2.setText("x(" + var1 + ") + C(" + n + ", " + r + ")");
                     }
                      else {
                         tf1.setText(String.valueOf(result));
