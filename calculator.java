@@ -16,6 +16,7 @@ public class calculator {
     static boolean cx = false;
     static boolean xpc=false;
     static boolean xaddc=false;
+    static boolean doublesl=false;
     static long vara = 0;
     static long varb = 0;
     static long varc = 0;
@@ -33,9 +34,11 @@ public class calculator {
     static int varfact = 1;
     static int n = 0;
     static int r = 0;
+    static int intres;
     static long result1 = 0;
     static double fresults1 = 1;
     static double fresults2 = 0;
+    static double result;
 
     //static double addition = 0;
     //static double subtraction = 0;
@@ -61,7 +64,7 @@ public class calculator {
         Font helv14 = new Font("Helvetica", Font.BOLD, 15);
         Font helv12 = new Font("Helvetica", Font.PLAIN, 12);
 
-        JFrame frame1 = new JFrame("Calculator");
+        JFrame frame1 = new JFrame("Calculator V.2.A");
         frame1.setLayout(new BorderLayout());
         frame1.setSize(480, 854);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +134,7 @@ public class calculator {
             fresults1 =0;
             fresults2 =1;
             result1 = 0;
+            result=0;
 
             powbot = false;
             cx = false;
@@ -168,21 +172,21 @@ public class calculator {
         per.addActionListener((ActionEvent e) -> {
             try {
                 if (!firstNumberEntered) {
-                    var1 = Double.parseDouble(tf1.getText());
-                    String uptxtfl = tf1.getText() + " %";
-                    tf2.setText(uptxtfl);
-                    tf1.setText("");
-                    operation = "%";
-                    firstNumberEntered = true;
+                    var1 = Double.parseDouble(tf1.getText()); //get the number
+                    String uptxtfl = tf1.getText() + " %"; //get the number to put at the top
+                    tf2.setText(uptxtfl); //put the text at the top
+                    tf1.setText(""); //resets the textfield
+                    operation = "%"; //case for the equal sign
+                    firstNumberEntered = true; //will proceed to do the equation
                 } else {
-                    double var4 = Double.parseDouble(tf1.getText());
-                    double modulus = var1 % var4;
-                    tf1.setText(String.valueOf(modulus));
-                    tf2.setText(var1 + " " + operation + " " + var4);
-                    firstNumberEntered = false;
+                    double var4 = Double.parseDouble(tf1.getText()); //get the number
+                    double modulus = var1 % var4; //perform the computation
+                    tf1.setText(String.valueOf(modulus)); //show the answer
+                    tf2.setText(var1 + " " + operation + " " + var4);//show the complete solution
+                    firstNumberEntered = false;//reset the if
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Sytntax Error");
             }
         });
 
@@ -210,7 +214,7 @@ public class calculator {
                     firstNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -553,6 +557,8 @@ public class calculator {
                 varsumma = varsumma + varb;
             }
             tf1.setText(String.valueOf(varsumma));
+            String uptxtfl = "∑" +vara + "/" +varb;
+            tf2.setText(uptxtfl);
         });
 
         JButton prodd = new JButton("Π A/B");
@@ -568,6 +574,8 @@ public class calculator {
                     varprodd = varprodd * i;
                 }
                 tf1.setText(String.valueOf(varprodd));
+                String uptxtfl = "Π" +vara + "/" +varb;
+                tf2.setText(uptxtfl);
         });
 
         JButton factorial = new JButton("n!");
@@ -671,7 +679,7 @@ public class calculator {
         
         });
     
-        JButton doubsl = new JButton("//");
+        JButton doubsl = new JButton("INT");
         doubsl.setBounds(50, 725,50, 50 );
         doubsl.setBackground(new Color(84,84,84,255));
         doubsl.setFont(helvbut);
@@ -682,7 +690,7 @@ public class calculator {
             var1 = Double.parseDouble(tf1.getText());
             double abs = Math.abs(var1);
             tf1.setText(String.valueOf(abs));
-            String uptxtfl = "/" + var1 +"/";
+            String uptxtfl = abs + " INT";
             tf2.setText(uptxtfl);
         });
 
@@ -730,13 +738,14 @@ public class calculator {
         rndnum.addActionListener((ActionEvent e) -> {
             var1 = Double.parseDouble(tf1.getText());
             double rnd = Math.round(var1);
-            tf1.setText(String.valueOf(rnd));
+            int rndint = (int) rnd;
+            tf1.setText(String.valueOf(rndint));
             String uptxtfl = "" +var1;
             tf2.setText(uptxtfl);
         });
 
-        JButton xaddcbut = new JButton("x + C");
-        xaddcbut.setBounds(170, 395,110, 50 );
+        JButton xaddcbut = new JButton("x+C");
+        xaddcbut.setBounds(170, 395,50, 50 );
         xaddcbut.setBackground(new Color(84,84,84,255));
         xaddcbut.setFont(helvbut);
         xaddcbut.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -829,12 +838,41 @@ public class calculator {
                     operation = "";
                 }
             } catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
                 System.out.println("Invalid input in x+y: " + ex.getMessage());
             } catch (Exception ex) {
-                tf1.setText("Error");
-                System.out.println("Unexpected error in x+y: " + ex.getMessage());
+                tf1.setText("Syntax Error");
+                System.out.println("Syntax error in x+y: " + ex.getMessage());
                 ex.printStackTrace();
+            }
+        });
+
+        JButton doublesla = new JButton("//");
+        doublesla.setBounds(230, 395,50, 50 );
+        doublesla.setBackground(new Color(84,84,84,255));
+        doublesla.setFont(helvbut);
+        doublesla.setBorder(new EmptyBorder(0, 0, 0, 0));
+        doublesla.setForeground(Color.WHITE);
+        doublesla.setFocusPainted(false);
+        doublesla.addActionListener((ActionEvent e) -> {
+            try {
+                if (!firstNumberEntered) {
+                    var1 = Double.parseDouble(tf1.getText());
+                    String uptxtfl = tf1.getText() + " //";
+                    tf2.setText(uptxtfl);
+                    tf1.setText("");
+                    operation = "//";
+                    firstNumberEntered = true;
+                } else {
+                    double var4 = Double.parseDouble(tf1.getText());
+                    double divition = var1 / var4;
+                    int intdiv = (int) divition;
+                    tf1.setText(String.valueOf(intdiv));
+                    tf2.setText(var1 + " " + operation + " " + var4);
+                    firstNumberEntered = false;
+                }
+            }catch (NumberFormatException ex) {
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -862,7 +900,7 @@ public class calculator {
                     firstNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -890,7 +928,7 @@ public class calculator {
                     firstNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -918,7 +956,7 @@ public class calculator {
                     firstNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -945,7 +983,7 @@ public class calculator {
                     firstNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -984,7 +1022,7 @@ public class calculator {
                     secondNumberEntered = false;
                 }
             }catch (NumberFormatException ex) {
-                tf1.setText("Invalid input");
+                tf1.setText("Syntax Error");
             }
         });
 
@@ -998,7 +1036,6 @@ public class calculator {
         eq.addActionListener((ActionEvent e) -> {
             try {
                 if (firstNumberEntered) {
-                    double result =0;
                     switch (operation) {
                         case "+":
                             var2 = Double.parseDouble(tf1.getText());
@@ -1023,6 +1060,19 @@ public class calculator {
                                 return;
                             }
                             break;
+                        case "//":
+                            var2 = Double.parseDouble(tf1.getText());
+                            if (var2 != 0) {
+                                result = var1 / var2;
+                                intres = (int) result;
+                                doublesl=true;
+                            } else {
+                                tf1.setText("Syntax Error");
+                                firstNumberEntered = false;
+                                operation = "";
+                                return;
+                            }
+                        break;
                         case "^":
                             var2 = Double.parseDouble(tf1.getText());
                             result = (Math.pow(var1, var2));
@@ -1091,11 +1141,17 @@ public class calculator {
                         tf1.setText(String.valueOf(fresults2));
                         tf2.setText("x(" + var1 + ") + C(" + n + ", " + r + ")");
                     }
+                    else if(doublesl){
+                        tf1.setText(String.valueOf(intres));
+                        tf2.setText(var1 + " " + operation + " " + var2);
+                        operation="";
+                    }
                      else {
                         tf1.setText(String.valueOf(result));
                         tf2.setText(var1 + " " + operation + " " + var2);
                         firstNumberEntered = false;
                         operation = "";
+                        result = 0;
                     }
                 }
             }catch(NumberFormatException ex){
@@ -1154,6 +1210,7 @@ public class calculator {
         frame1.add(xaddcbut);
         frame1.add(xexcbut);
         frame1.add(rndnum);
+        frame1.add(doublesla);
 
         frame1.add(img1);
         
